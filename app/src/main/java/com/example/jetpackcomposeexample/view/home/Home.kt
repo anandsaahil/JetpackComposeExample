@@ -20,13 +20,13 @@ import com.example.data.entity.UserEntity
 
 @Composable
 fun Home(model: HomeViewModel = viewModel()) {
-    val topMovies by model.getUsers.observeAsState()
-    when (topMovies?.status) {
+    val userState by model.getUsers.observeAsState()
+    when (userState?.status) {
         Status.ERROR -> Text("error")
         Status.LOADING -> {
             MaterialCircularProgressIndicatorComponent()
         }
-        Status.SUCCESS -> UserList(topMovies?.data?.body().orEmpty())
+        Status.SUCCESS -> UserList(userState?.data?.body().orEmpty())
     }
 }
 
